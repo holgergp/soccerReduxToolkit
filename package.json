@@ -31,7 +31,7 @@
     "deploy": "gh-pages -d build",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:run:record": "cypress run --record --key fa37b339-0b3e-4d9f-9777-e5e89e8e9de2",
+    "cypress:run:record": "cypress run --record --key 8bc5a005-dbaf-418f-a779-508f2d43a2cf",
     "lint": "node_modules/.bin/eslint ./ --ext .js,.jsx",
     "lint:fix": "./node_modules/.bin/prettier --single-quote --write \"+(src|cypress)/**/*.{js,jsx,json,css,scss,md}\"",
     "prettier-check": "prettier --single-quote --check \"+(src|cypress)/**/*.{js,jsx,json,css,scss,md}\"",
