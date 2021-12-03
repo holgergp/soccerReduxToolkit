@@ -4,6 +4,8 @@ import { ItemTypes } from '../../DndItemTypes';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import ContentEditable from 'react-contenteditable';
+import { useDispatch } from 'react-redux';
+import { updateTeamname, swapPositions } from '../LeagueTable/leagueTableSlice';
 
 const calculatePositionCssClass = (positionNumber) => {
   if (positionNumber === 1) {
@@ -26,8 +28,8 @@ const calculatePositionCssClass = (positionNumber) => {
 };
 
 const Team = (props) => {
-  const { rank, team, updateTeamname } = props;
-
+  const { rank, team } = props;
+  const dispatch = useDispatch();
   const dragReturn = useDrag({
     type: ItemTypes.TEAM,
     item: { team },
@@ -37,7 +39,12 @@ const Team = (props) => {
       }
       const dragItem = monitor.getItem();
       const dropResult = monitor.getDropResult();
-      props.swapPositions(dragItem.team.id, dropResult.team.id);
+      dispatch(
+        swapPositions({
+          sourceTeamId: dragItem.team.id,
+          targetTeamId: dropResult.team.id,
+        })
+      );
     },
   });
 
@@ -49,7 +56,7 @@ const Team = (props) => {
   );
 
   const onChange = (evt) => {
-    updateTeamname(team, evt.target.value);
+    dispatch(updateTeamname({ team, updatedText: evt.target.value }));
   };
 
   return (
@@ -69,9 +76,7 @@ const Team = (props) => {
 
 Team.propTypes = {
   rank: PropTypes.number.isRequired,
-  swapPositions: PropTypes.func.isRequired,
   team: PropTypes.object.isRequired,
-  updateTeamname: PropTypes.func.isRequired,
 };
 
 export default Team;
