@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Position from '../Position/Position';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Card, Col } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSampleData } from './leagueTableSlice';
 
 const LeagueTable = () => {
-  //const [positions, setPositions] = useState(SAMPLE_LEAGUE_TABLE);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSampleData());
+  }, [dispatch]);
+
   const positions = useSelector((state) => state.leagueTable.positions);
-  /**
-  const { isLoading, error } = useQuery('sampleData', getSampleData, {
-    onSuccess: setPositions,
-  });
-  if (isLoading) {
+  const loadingCompleted = useSelector(
+    (state) => state.leagueTable.loadingCompleted
+  );
+
+  if (!loadingCompleted) {
     return 'Loading...';
   }
-
-  if (error) {
-    return 'An error has occurred: ' + error.message;
-  }**/
 
   return (
     <DndProvider backend={HTML5Backend}>
