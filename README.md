@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/holgergp/soccerReduxToolkit/branch/main/graph/badge.svg)](https://codecov.io/gh/holgergp/soccerReduxToolkit)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8eee079e61834ccfb8f92a02f705ee09)](https://app.codacy.com/app/holgergp/soccerReduxToolkit?utm_source=github.com&utm_medium=referral&utm_content=holgergp/soccerReduxToolkit&utm_campaign=Badge_Grade_Dashboard)
 
-This is an addition to [SoccerReact16](https://github.com/holgergp/soccerReact16) using ReactQuery.
+This is an addition to [SoccerReact16](https://github.com/holgergp/soccerReact16) using Redux, Redux-Toolkit and Redux Saga.
 
 I've used Node 16.x while developing this.
 Install dependencies with `npm install`.
