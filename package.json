@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://holgergp.github.io/soccerReactQuery",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.2",
     "bootstrap": "^4.6.0",
     "enzyme": "^3.6.0",
     "husky": "^7.0.4",
