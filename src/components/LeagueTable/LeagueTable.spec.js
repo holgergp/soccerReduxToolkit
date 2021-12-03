@@ -1,22 +1,24 @@
 import React from 'react';
-import '../setupEnzymeTests';
 import LeagueTable from './LeagueTable';
-import '../localstorageMock';
-import * as leagueTableApi from '../../api/leagueTableApi';
 import { SAMPLE_LEAGUE_TABLE } from './SampleData';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { render, waitFor, screen } from '@testing-library/react';
-jest.mock('../../api/leagueTableApi');
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+
+const mockStore = configureStore();
 
 describe('League Table should', () => {
-  const queryClient = new QueryClient();
   it('render 18 clubs', async () => {
-    leagueTableApi.getSampleData.mockResolvedValue(SAMPLE_LEAGUE_TABLE);
+    const initialPositionState = {
+      positions: SAMPLE_LEAGUE_TABLE,
+      loadingCompleted: true,
+    };
+    const store = mockStore({ leagueTable: initialPositionState });
 
     render(
-      <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
         <LeagueTable />
-      </QueryClientProvider>
+      </Provider>
     );
     await waitFor(() => screen.getByRole('heading'));
 
